@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --black:  #0C0C0C;
+  --white:  #F8F7F3;
+  --red:    #E8300A;
+  --muted:  #8A8A82;
+  --border: rgba(12,12,12,0.1);
+  --card:   #EDECE8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+/* Strikethrough animation on SHOOT */
+@keyframes strikeIn {
+  from { width: 0; left: 0; }
+  to   { width: 102%; left: -1%; }
+}
+
+/* Scroll hint pulse */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(0.6); }
+}
+
+/* Marquee ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-strike::after {
+  content: '';
+  position: absolute;
+  left: -1%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 102%;
+  height: 10px;
+  background: var(--red);
+  border-radius: 2px;
+  animation: strikeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+}
+
+.animate-scroll-pulse {
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
