@@ -95,13 +95,12 @@ export default function ProjectDrawer({ project, onClose }) {
           {/* CTA */}
           <div className="border-t border-black/10 pt-6 md:pt-8 pb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p className="text-[13px] md:text-[14px] text-[#8A8A82]">Want something like this for your brand?</p>
-            <a
-              href="#contact"
-              onClick={onClose}
-              className="inline-flex items-center gap-2 bg-[#0C0C0C] text-[#F8F7F3] px-5 md:px-6 py-3 rounded-full text-[13px] font-medium hover:bg-[#E8300A] transition-colors duration-200 no-underline whitespace-nowrap"
+            <button
+              onClick={() => { onClose(); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 50) }}
+              className="inline-flex items-center gap-2 bg-[#0C0C0C] text-[#F8F7F3] px-5 md:px-6 py-3 rounded-full text-[13px] font-medium hover:bg-[#E8300A] transition-colors duration-200 whitespace-nowrap border-none cursor-pointer"
             >
               Start a project →
-            </a>
+            </button>
           </div>
         </div>
       </div>
