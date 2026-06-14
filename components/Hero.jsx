@@ -2,19 +2,27 @@ export default function Hero() {
   return (
     <section className="min-h-screen flex flex-col justify-end px-5 sm:px-8 md:px-12 pb-12 md:pb-16 pt-20 relative overflow-hidden">
 
-      {/* Background video — place /hero-video.mp4 in public/ to activate */}
+      {/* Video — mobile only */}
       <video
         autoPlay
         muted
         loop
         playsInline
         poster="/hero-poster.jpg"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="md:hidden absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
         <source src="/hero-video.webm" type="video/webm" />
       </video>
+
+      {/* Static poster — desktop only */}
+      <img
+        src="/hero-poster.jpg"
+        alt=""
+        className="hidden md:block absolute inset-0 w-full h-full object-cover"
+        aria-hidden="true"
+      />
 
       {/* Gradient overlay: dark at top (video visible), fades to page bg at bottom (text readable) */}
       <div
