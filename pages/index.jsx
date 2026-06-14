@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Marquee from '../components/Marquee'
 import Services from '../components/Services'
 import Work from '../components/Work'
+import SavingsCalculator from '../components/SavingsCalculator'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Marquee />
       <Services />
       <Work />
+      <SavingsCalculator />
       <Contact />
       <Footer />
     </>
