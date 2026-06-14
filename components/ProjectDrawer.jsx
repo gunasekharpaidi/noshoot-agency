@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 
 export default function ProjectDrawer({ project, onClose }) {
   useEffect(() => {
+    if (!project) return
     function onKey(e) { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
@@ -9,7 +10,7 @@ export default function ProjectDrawer({ project, onClose }) {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
     }
-  }, [onClose])
+  }, [project, onClose])
 
   if (!project) return null
 
