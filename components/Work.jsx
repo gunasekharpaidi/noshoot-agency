@@ -64,17 +64,19 @@ export default function Work() {
   const [activeProject, setActiveProject] = useState(null)
 
   return (
-    <section id="work" className="px-12 py-24 border-t border-black/10 bg-brand-black">
-      <div className="text-[11px] tracking-[0.14em] uppercase text-[#555] mb-12 flex items-center gap-3 after:content-[''] after:flex-1 after:h-px after:bg-[#333] after:max-w-[80px]">
+    <section id="work" className="px-5 sm:px-8 md:px-12 py-16 md:py-24 border-t border-black/10 bg-brand-black">
+      <div className="text-[11px] tracking-[0.14em] uppercase text-[#555] mb-8 md:mb-12 flex items-center gap-3 after:content-[''] after:flex-1 after:h-px after:bg-[#333] after:max-w-[80px]">
         Selected work
       </div>
 
-      <h2 className="font-condensed font-extrabold leading-[0.95] tracking-[-0.02em] text-brand-white mb-12"
-        style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+      <h2
+        className="font-condensed font-extrabold leading-[0.95] tracking-[-0.02em] text-brand-white mb-8 md:mb-12"
+        style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)' }}
+      >
         No cameras.<br />Real results.
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
         {projects.map((project) => (
           <WorkCard
             key={project.id}
@@ -88,7 +90,7 @@ export default function Work() {
         ))}
       </div>
 
-      <p className="mt-8 text-[13px] text-[#555] text-center italic">
+      <p className="mt-6 md:mt-8 text-[12px] md:text-[13px] text-[#555] text-center italic">
         Case studies coming soon — follow{' '}
         <a href="https://instagram.com/noshoot.agency" className="text-[#555] underline">
           @noshoot.agency

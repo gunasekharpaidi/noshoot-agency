@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-black/10 px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+    <footer className="border-t border-black/10 px-5 sm:px-8 md:px-12 py-6 md:py-8 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 text-center">
       <a href="#" className="font-condensed font-black text-[1.1rem] text-brand-black no-underline">
         NO<span className="text-brand-red">.</span>SHOOT
       </a>
