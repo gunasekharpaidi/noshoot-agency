@@ -1,23 +1,23 @@
 const services = [
   {
-    name: 'Brand identity',
-    tag: 'Foundation',
-    desc: 'Logo, typography, colour system, and visual language built from scratch.',
+    name: 'Product visuals',
+    tag: 'AI-generated',
+    desc: 'Studio-quality product shots without a studio.',
+  },
+  {
+    name: 'Ad creatives',
+    tag: 'Performance',
+    desc: 'Static and video ads built to convert.',
   },
   {
     name: 'Social content',
     tag: 'Ongoing',
-    desc: 'Reels, carousels, and static posts designed to stop the scroll.',
+    desc: 'Feed posts, Reels covers, carousels, Stories.',
   },
   {
-    name: 'Motion graphics',
-    tag: 'High impact',
-    desc: 'Animated brand assets, product explainers, and ad creatives.',
-  },
-  {
-    name: 'Campaign visuals',
-    tag: 'Launch',
-    desc: 'Full creative suites for product launches, offers, and brand moments.',
+    name: 'Video content',
+    tag: 'AI-assisted',
+    desc: 'Brand videos, product showcases, ad films.',
   },
 ]
 

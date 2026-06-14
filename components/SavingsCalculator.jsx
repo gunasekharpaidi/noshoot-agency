@@ -1,50 +1,77 @@
 import { useState } from 'react'
 
-const USD_TO_INR = 83
-
-const pricing = {
-  'Brand identity': {
-    Starter:  { traditional: 8000,  noshoot: 1500 },
-    Growth:   { traditional: 15000, noshoot: 3000 },
-    Launch:   { traditional: 30000, noshoot: 6000 },
+const pricingUSD = {
+  'Product visuals': {
+    Starter: { traditional: 6000,  noshoot: 1200 },
+    Growth:  { traditional: 12000, noshoot: 2500 },
+    Launch:  { traditional: 25000, noshoot: 5000 },
+  },
+  'Ad creatives': {
+    Starter: { traditional: 5000,  noshoot: 900  },
+    Growth:  { traditional: 10000, noshoot: 2000 },
+    Launch:  { traditional: 22000, noshoot: 4500 },
   },
   'Social content': {
-    Starter:  { traditional: 5000,  noshoot: 800  },
-    Growth:   { traditional: 10000, noshoot: 1800 },
-    Launch:   { traditional: 20000, noshoot: 3500 },
+    Starter: { traditional: 4000,  noshoot: 800  },
+    Growth:  { traditional: 8000,  noshoot: 1600 },
+    Launch:  { traditional: 18000, noshoot: 3500 },
   },
-  'Motion graphics': {
-    Starter:  { traditional: 6000,  noshoot: 1200 },
-    Growth:   { traditional: 12000, noshoot: 2500 },
-    Launch:   { traditional: 25000, noshoot: 5000 },
-  },
-  'Campaign visuals': {
-    Starter:  { traditional: 7000,  noshoot: 1500 },
-    Growth:   { traditional: 14000, noshoot: 3000 },
-    Launch:   { traditional: 28000, noshoot: 5500 },
+  'Video content': {
+    Starter: { traditional: 7000,  noshoot: 1400 },
+    Growth:  { traditional: 15000, noshoot: 3000 },
+    Launch:  { traditional: 30000, noshoot: 6000 },
   },
   'Full package': {
-    Starter:  { traditional: 20000, noshoot: 4000  },
-    Growth:   { traditional: 40000, noshoot: 8000  },
-    Launch:   { traditional: 80000, noshoot: 15000 },
+    Starter: { traditional: 18000, noshoot: 3500  },
+    Growth:  { traditional: 38000, noshoot: 7500  },
+    Launch:  { traditional: 75000, noshoot: 14000 },
+  },
+}
+
+const pricingINR = {
+  'Product visuals': {
+    Starter: { traditional: 45000,  noshoot: 9000  },
+    Growth:  { traditional: 90000,  noshoot: 18000 },
+    Launch:  { traditional: 200000, noshoot: 40000 },
+  },
+  'Ad creatives': {
+    Starter: { traditional: 35000,  noshoot: 7000  },
+    Growth:  { traditional: 70000,  noshoot: 14000 },
+    Launch:  { traditional: 160000, noshoot: 32000 },
+  },
+  'Social content': {
+    Starter: { traditional: 25000,  noshoot: 5000  },
+    Growth:  { traditional: 55000,  noshoot: 11000 },
+    Launch:  { traditional: 120000, noshoot: 24000 },
+  },
+  'Video content': {
+    Starter: { traditional: 50000,  noshoot: 10000 },
+    Growth:  { traditional: 110000, noshoot: 22000 },
+    Launch:  { traditional: 250000, noshoot: 50000 },
+  },
+  'Full package': {
+    Starter: { traditional: 120000, noshoot: 24000  },
+    Growth:  { traditional: 280000, noshoot: 55000  },
+    Launch:  { traditional: 600000, noshoot: 120000 },
   },
 }
 
 const scales = ['Starter', 'Growth', 'Launch']
-const services = Object.keys(pricing)
+const services = Object.keys(pricingUSD)
 
 function fmt(amount, currency) {
   if (currency === 'USD') {
     return '$' + amount.toLocaleString('en-US')
   }
-  return '₹' + Math.round(amount * USD_TO_INR).toLocaleString('en-IN')
+  return '₹' + amount.toLocaleString('en-IN')
 }
 
 export default function SavingsCalculator() {
   const [currency, setCurrency] = useState('USD')
-  const [service, setService] = useState('Brand identity')
+  const [service, setService] = useState('Product visuals')
   const [scale, setScale] = useState('Growth')
 
+  const pricing = currency === 'USD' ? pricingUSD : pricingINR
   const { traditional, noshoot } = pricing[service][scale]
   const savings = traditional - noshoot
   const pct = Math.round((savings / traditional) * 100)
@@ -160,7 +187,7 @@ export default function SavingsCalculator() {
       {/* Disclaimer + CTA */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-6">
         <p className="text-[12px] text-[#555] leading-relaxed max-w-sm">
-          Estimates based on typical agency market rates. Your actual savings may vary.
+          Estimates based on typical market rates. Your actual savings may vary.
         </p>
         <button
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
