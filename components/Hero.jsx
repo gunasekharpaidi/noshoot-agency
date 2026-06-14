@@ -8,6 +8,7 @@ export default function Hero() {
         muted
         loop
         playsInline
+        poster="/hero-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
       >
