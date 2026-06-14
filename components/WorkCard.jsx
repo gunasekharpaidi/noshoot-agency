@@ -2,7 +2,7 @@ export default function WorkCard({ tall, bgClass, symbol, category, title, onCli
   return (
     <div
       className={`rounded-xl overflow-hidden relative bg-[#1A1A1A] cursor-pointer group ${tall ? 'row-span-2' : ''}`}
-      style={{ aspectRatio: tall ? '3/4' : '4/3' }}
+      style={tall ? { height: '100%' } : { aspectRatio: '4/3' }}
       onClick={onClick}
       role="button"
       tabIndex={0}
