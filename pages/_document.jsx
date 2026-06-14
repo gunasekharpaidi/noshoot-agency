@@ -9,7 +9,8 @@ export default function Document() {
         <meta property="og:description" content="Creative agency making brand content, social media, and campaign visuals without traditional photography shoots." />
         <meta property="og:image" content="/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <body>
         <Main />

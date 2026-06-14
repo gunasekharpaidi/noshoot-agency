@@ -1,78 +1,70 @@
 import { useState } from 'react'
 
-const pricingUSD = {
+const categories = {
   'Product visuals': {
-    Starter: { traditional: 6000,  noshoot: 1200 },
-    Growth:  { traditional: 12000, noshoot: 2500 },
-    Launch:  { traditional: 25000, noshoot: 5000 },
+    unit: 'products / SKUs',
+    min: 1,
+    max: 20,
+    defaultVal: 5,
+    USD: { traditional: 800,  noshoot: 150  },
+    INR: { traditional: 8000, noshoot: 1500 },
   },
   'Ad creatives': {
-    Starter: { traditional: 5000,  noshoot: 900  },
-    Growth:  { traditional: 10000, noshoot: 2000 },
-    Launch:  { traditional: 22000, noshoot: 4500 },
+    unit: 'ad creatives',
+    min: 1,
+    max: 20,
+    defaultVal: 5,
+    USD: { traditional: 500,  noshoot: 90  },
+    INR: { traditional: 5000, noshoot: 900 },
   },
   'Social content': {
-    Starter: { traditional: 4000,  noshoot: 800  },
-    Growth:  { traditional: 8000,  noshoot: 1600 },
-    Launch:  { traditional: 18000, noshoot: 3500 },
+    unit: 'posts per month',
+    min: 8,
+    max: 60,
+    defaultVal: 20,
+    USD: { traditional: 150, noshoot: 28  },
+    INR: { traditional: 1500, noshoot: 280 },
   },
   'Video content': {
-    Starter: { traditional: 7000,  noshoot: 1400 },
-    Growth:  { traditional: 15000, noshoot: 3000 },
-    Launch:  { traditional: 30000, noshoot: 6000 },
+    unit: 'videos',
+    min: 1,
+    max: 10,
+    defaultVal: 3,
+    USD: { traditional: 2000, noshoot: 380  },
+    INR: { traditional: 20000, noshoot: 3800 },
   },
   'Full package': {
-    Starter: { traditional: 18000, noshoot: 3500  },
-    Growth:  { traditional: 38000, noshoot: 7500  },
-    Launch:  { traditional: 75000, noshoot: 14000 },
+    unit: 'products / SKUs',
+    min: 1,
+    max: 15,
+    defaultVal: 5,
+    USD: { traditional: 1200, noshoot: 220  },
+    INR: { traditional: 12000, noshoot: 2200 },
   },
 }
 
-const pricingINR = {
-  'Product visuals': {
-    Starter: { traditional: 45000,  noshoot: 9000  },
-    Growth:  { traditional: 90000,  noshoot: 18000 },
-    Launch:  { traditional: 200000, noshoot: 40000 },
-  },
-  'Ad creatives': {
-    Starter: { traditional: 35000,  noshoot: 7000  },
-    Growth:  { traditional: 70000,  noshoot: 14000 },
-    Launch:  { traditional: 160000, noshoot: 32000 },
-  },
-  'Social content': {
-    Starter: { traditional: 25000,  noshoot: 5000  },
-    Growth:  { traditional: 55000,  noshoot: 11000 },
-    Launch:  { traditional: 120000, noshoot: 24000 },
-  },
-  'Video content': {
-    Starter: { traditional: 50000,  noshoot: 10000 },
-    Growth:  { traditional: 110000, noshoot: 22000 },
-    Launch:  { traditional: 250000, noshoot: 50000 },
-  },
-  'Full package': {
-    Starter: { traditional: 120000, noshoot: 24000  },
-    Growth:  { traditional: 280000, noshoot: 55000  },
-    Launch:  { traditional: 600000, noshoot: 120000 },
-  },
-}
-
-const scales = ['Starter', 'Growth', 'Launch']
-const services = Object.keys(pricingUSD)
+const services = Object.keys(categories)
 
 function fmt(amount, currency) {
-  if (currency === 'USD') {
-    return '$' + amount.toLocaleString('en-US')
-  }
+  if (currency === 'USD') return '$' + amount.toLocaleString('en-US')
   return '₹' + amount.toLocaleString('en-IN')
 }
 
 export default function SavingsCalculator() {
   const [currency, setCurrency] = useState('USD')
   const [service, setService] = useState('Product visuals')
-  const [scale, setScale] = useState('Growth')
+  const [qty, setQty] = useState(5)
 
-  const pricing = currency === 'USD' ? pricingUSD : pricingINR
-  const { traditional, noshoot } = pricing[service][scale]
+  const cat = categories[service]
+
+  function handleServiceChange(s) {
+    setService(s)
+    setQty(categories[s].defaultVal)
+  }
+
+  const rates = cat[currency]
+  const traditional = rates.traditional * qty
+  const noshoot = rates.noshoot * qty
   const savings = traditional - noshoot
   const pct = Math.round((savings / traditional) * 100)
 
@@ -111,7 +103,7 @@ export default function SavingsCalculator() {
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col gap-6 mb-10 md:mb-14">
+      <div className="flex flex-col gap-8 mb-10 md:mb-14">
         {/* Service selector */}
         <div>
           <p className="text-[11px] tracking-[0.14em] uppercase text-[#555] mb-3">What do you need?</p>
@@ -119,7 +111,7 @@ export default function SavingsCalculator() {
             {services.map((s) => (
               <button
                 key={s}
-                onClick={() => setService(s)}
+                onClick={() => handleServiceChange(s)}
                 className={`px-4 py-2 rounded-full text-[13px] border-none cursor-pointer transition-all duration-200 ${
                   service === s
                     ? 'bg-brand-red text-white'
@@ -132,48 +124,50 @@ export default function SavingsCalculator() {
           </div>
         </div>
 
-        {/* Scale selector */}
+        {/* Quantity slider */}
         <div>
-          <p className="text-[11px] tracking-[0.14em] uppercase text-[#555] mb-3">Project scale</p>
-          <div className="flex gap-2">
-            {scales.map((s) => (
-              <button
-                key={s}
-                onClick={() => setScale(s)}
-                className={`flex-1 md:flex-none px-6 py-2.5 rounded-full text-[13px] border-none cursor-pointer transition-all duration-200 ${
-                  scale === s
-                    ? 'bg-brand-white text-brand-black font-medium'
-                    : 'bg-white/10 text-[#8A8A82] hover:bg-white/20 hover:text-white'
-                }`}
-              >
-                {s}
-              </button>
-            ))}
+          <div className="flex items-baseline justify-between mb-4">
+            <p className="text-[11px] tracking-[0.14em] uppercase text-[#555]">How many?</p>
+            <p className="font-condensed font-black text-brand-white text-[1.6rem] leading-none">
+              {qty} <span className="text-[#555] text-[13px] font-normal font-sans">{cat.unit}</span>
+            </p>
+          </div>
+          <input
+            type="range"
+            min={cat.min}
+            max={cat.max}
+            value={qty}
+            onChange={(e) => setQty(Number(e.target.value))}
+            className="w-full accent-brand-red cursor-pointer"
+            style={{ accentColor: '#E8300A' }}
+          />
+          <div className="flex justify-between mt-1.5 text-[11px] text-[#555]">
+            <span>{cat.min}</span>
+            <span>{cat.max}</span>
           </div>
         </div>
       </div>
 
       {/* Output */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 rounded-2xl overflow-hidden">
-        {/* Traditional cost */}
         <div className="bg-brand-black px-6 py-8 md:px-8 md:py-10">
           <p className="text-[11px] tracking-[0.14em] uppercase text-[#555] mb-3">Traditional agency</p>
           <p className="font-condensed font-black text-[#555] leading-none line-through"
             style={{ fontSize: 'clamp(1.8rem, 5vw, 2.8rem)' }}>
             {fmt(traditional, currency)}
           </p>
+          <p className="text-[11px] text-[#444] mt-2">{fmt(rates.traditional, currency)} per {cat.unit.split(' ')[0]}</p>
         </div>
 
-        {/* Noshoot cost */}
         <div className="bg-brand-black px-6 py-8 md:px-8 md:py-10">
           <p className="text-[11px] tracking-[0.14em] uppercase text-[#555] mb-3">With Noshoot</p>
           <p className="font-condensed font-black text-brand-white leading-none"
             style={{ fontSize: 'clamp(1.8rem, 5vw, 2.8rem)' }}>
             {fmt(noshoot, currency)}
           </p>
+          <p className="text-[11px] text-[#444] mt-2">{fmt(rates.noshoot, currency)} per {cat.unit.split(' ')[0]}</p>
         </div>
 
-        {/* Savings */}
         <div className="bg-brand-black px-6 py-8 md:px-8 md:py-10 border-t sm:border-t-0 border-white/10">
           <p className="text-[11px] tracking-[0.14em] uppercase text-[#555] mb-3">You save</p>
           <p className="font-condensed font-black text-brand-red leading-none"
