@@ -1,3 +1,25 @@
+import Head from 'next/head'
+import Nav from '../components/Nav'
+import Hero from '../components/Hero'
+import Marquee from '../components/Marquee'
+import Services from '../components/Services'
+import Work from '../components/Work'
+import Contact from '../components/Contact'
+import Footer from '../components/Footer'
+
 export default function Home() {
-  return <main><h1>Noshoot</h1></main>
+  return (
+    <>
+      <Head>
+        <title>Noshoot — No cameras. Just results.</title>
+      </Head>
+      <Nav />
+      <Hero />
+      <Marquee />
+      <Services />
+      <Work />
+      <Contact />
+      <Footer />
+    </>
+  )
 }

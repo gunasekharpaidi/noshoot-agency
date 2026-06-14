@@ -26,7 +26,7 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div className="bg-[#E8F5E9] rounded-lg px-5 py-4 text-[14px] text-[#2E7D32]">
-        ✓ Got it — we'll be in touch within 24 hours.
+        ✓ Got it — we&apos;ll be in touch within 24 hours.
       </div>
     )
   }

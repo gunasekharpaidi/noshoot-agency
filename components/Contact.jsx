@@ -11,12 +11,12 @@ export default function Contact() {
         <div>
           <h2 className="font-condensed font-extrabold leading-[0.95] tracking-[-0.02em] mb-6"
             style={{ fontSize: 'clamp(2.5rem, 4vw, 3.8rem)' }}>
-            Let's make something{' '}
+            Let&apos;s make something{' '}
             <em className="not-italic text-brand-red">without</em>{' '}
             the shoot.
           </h2>
           <p className="text-[14px] text-brand-muted leading-relaxed mb-10">
-            Tell us what you're building and we'll come back within 24 hours with how we can help.
+            Tell us what you&apos;re building and we&apos;ll come back within 24 hours with how we can help.
           </p>
           <div className="flex flex-col gap-4">
             <a href="https://instagram.com/noshoot.agency"
