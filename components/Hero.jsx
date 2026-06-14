@@ -30,7 +30,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-brand-muted text-[11px] tracking-[0.1em] uppercase">
+      <div className="hidden md:flex absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 text-brand-muted text-[11px] tracking-[0.1em] uppercase">
         <div className="w-px h-8 md:h-10 bg-brand-muted animate-scroll-pulse" />
         scroll
       </div>
