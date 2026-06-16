@@ -2,11 +2,19 @@ export default function Hero() {
   return (
     <section className="min-h-screen flex flex-col justify-end px-5 sm:px-8 md:px-12 pb-12 md:pb-16 pt-20 relative overflow-hidden">
 
-      {/* Hero background image — place /hero-image.jpg in public/ */}
+      {/* Mobile hero image */}
       <img
-        src="/hero-image.jpg"
+        src="/hero-mobile.jpg"
         alt=""
-        className="absolute inset-0 w-full h-full object-cover"
+        className="md:hidden absolute inset-0 w-full h-full object-cover"
+        aria-hidden="true"
+      />
+
+      {/* Desktop hero image — falls back to mobile image until hero-desktop.jpg is added */}
+      <img
+        src="/hero-desktop.jpg"
+        alt=""
+        className="hidden md:block absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
       />
 
