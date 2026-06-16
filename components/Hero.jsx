@@ -4,12 +4,16 @@ export default function Hero() {
 
       {/* Image zone — top portion */}
       <div className="relative w-full overflow-hidden" style={{ height: '55vh' }}>
-        <img
-          src="/hero-mobile.jpg"
-          alt=""
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="md:hidden w-full h-full object-cover object-top"
           aria-hidden="true"
-        />
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
         <img
           src="/hero-desktop.jpg"
           alt=""
