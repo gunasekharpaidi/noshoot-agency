@@ -18,11 +18,11 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* Gradient overlay: dark at top (video visible), fades to page bg at bottom (text readable) */}
+      {/* Gradient overlay: only fades at bottom so text is readable */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(248,247,243,0.55) 55%, #F8F7F3 80%)',
+          background: 'linear-gradient(to bottom, transparent 0%, transparent 60%, #F8F7F3 100%)',
         }}
       />
 
